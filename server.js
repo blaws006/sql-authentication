@@ -44,6 +44,19 @@ models.sequelize.sync().then(function() {
     console.log(err, "Something went wrong with the database Update!")
 });
 
+
+//Handlebars 
+
+var exphbs = require('express-handlebars');
+
+app.set('views', './app/views')
+app.engine('hbs', exphbs({
+    extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
+
+var authRoute = require('./app/routes/auth.js')(app);
+
 app.listen(5000, function (err) {
 
     if (!err)
